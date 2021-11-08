@@ -1,0 +1,72 @@
+<vex-secondary-toolbar class="bg-primary" current="Agregar Usuarios">
+    <vex-breadcrumbs [crumbs]="currentSection" fxFlex="auto"></vex-breadcrumbs>
+</vex-secondary-toolbar>
+<div @stagger class="p-gutter" vexContainer fxFlex-1 fxLayout="column">
+    <div class="mt-3" fxFlex fxLayoutGap="10" fxLayoutAlign="">
+        <div class="" fxFlex="auto">
+            <a [routerLink]="previousRoute">
+                <button mat-raised-button color="accent">Regresar</button>
+            </a>
+        </div>
+        <button mat-raised-button color="primary" (click)="guardarUsuario();" *ngIf="idUsuario == 0">
+            GUARDAR
+        </button>
+        <button mat-raised-button color="primary" (click)="modificarUsuario();" *ngIf="idUsuario > 0">
+            MODIFICAR
+        </button>
+    </div>
+</div>
+<div class="mt-4" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <div @fadeInUp class="p-4 card" fxFlex="auto">
+        <h2 class="mt-2 mb-0 text-primary custom-font">
+            <b>Ingresa los datos del Usuario</b>
+        </h2>
+        <div @stagger class="mt-4" fxLayout="column" fxLayoutGap="8px">
+            <form [formGroup]="formularioUsuarios">
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
+                    <mat-form-field fxFlex="grow">
+                        <mat-label>Nombre(s)</mat-label>
+                        <input formControlName="firstName" matInput required>
+                        <mat-error *ngIf="firstNameInvalid">campo invalido</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="grow">
+                        <mat-label>Apellido(s)</mat-label>
+                        <input formControlName="lastName" matInput required>
+                        <mat-error *ngIf="lastNameInvalid">campo invalido</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
+                    <mat-form-field fxFlex="grow">
+                        <mat-label>Usuario</mat-label>
+                        <input formControlName="userName" matInput required (change)="validarUsuario();">
+                        <mat-error *ngIf="userNameInvalid">El nombre de usuario ya existe en la base de datos</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
+                    <mat-form-field fxFlex="grow">
+                        <mat-label>Password</mat-label>
+                        <input type="password" formControlName="password" matInput required>
+                        <mat-error *ngIf="passwordInvalid">campo invalido</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="grow">
+                        <mat-label>Confirmar password</mat-label>
+                        <input type="password" formControlName="confirmPassword" matInput required>
+                        <mat-error *ngIf="confirmPassInvalid">Los Passwords no coinciden</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
+                    <mat-form-field fxFlex="grow">
+                        <mat-label>email</mat-label>
+                        <input formControlName="email" matInput>
+                        <mat-error *ngIf="emailInvalid">campo invalido</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="grow">
+                        <mat-label>Fecha de nscimiento</mat-label>
+                        <input type="date" matInput formControlName="dateOfBirth">
+                        <mat-hint>(formato DD/MM/YYYY)</mat-hint>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

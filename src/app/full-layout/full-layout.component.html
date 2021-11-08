@@ -1,0 +1,19 @@
+<div [class.boxed]="isBoxed$ | async"
+     [class.horizontal-layout]="!(isLayoutVertical$ | async)"
+     [class.is-mobile]="!(isDesktop$ | async)"
+     [class.vertical-layout]="isLayoutVertical$ | async"
+     [class.has-fixed-footer]="(isFooterFixed$) && isFooterVisible$"
+     [class.has-footer]="isFooterVisible$ "
+     [class.scroll-disabled]="scrollDisabled$ | async"
+     [class.toolbar-fixed]="false"
+     [class.sidenav-collapsed]="true"
+     [class.content-container]="containerEnabled$ | async"
+     [class.with-search]="false"
+     class="page-container">
+
+    <vex-progress-bar></vex-progress-bar>
+    <main class="content">
+        <router-outlet></router-outlet>
+    </main>
+</div>
+

@@ -1,0 +1,23 @@
+<vex-page-layout>
+    <!-- Encabezado de Página -->
+    <vex-page-layout-header class="pb-16" fxLayout="column" fxLayoutAlign="center start">
+        <div class="w-full flex flex-col sm:flex-row justify-between" [class.px-gutter]="'fullwidth'">
+            <div>
+                <!-- Título de la Página -->
+                <h1 class="title mt-0 mb-1">Administrador de hoteles </h1>
+                <!--/ Termina Título de la Página -->
+                <!-- Arbol de ubicación -->
+                <vex-breadcrumbs [crumbs]="currentSection"></vex-breadcrumbs>
+                <!--/ Termina Arbol de ubicación -->
+            </div>
+        </div>
+    </vex-page-layout-header>
+    <!--/ Termina Encabezado de Página -->
+
+    <vex-page-layout-content class="-mt-6" [class.px-gutter]="'fullwidth'">
+        <div class="card overflow-auto -mt-16 w-full" fxFlex="100">
+            <router-outlet></router-outlet>
+        </div>
+    </vex-page-layout-content>
+
+</vex-page-layout>
